@@ -1,4 +1,5 @@
-.settings/*
 TinySpreadsheet/Debug/*
 .cproject
 .project
+TinySpreadsheet/.settings/*
+TinySpreadsheet/.gitignore
