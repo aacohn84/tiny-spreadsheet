@@ -1,5 +1,4 @@
-
 .settings/*
-/Debug
-
 TinySpreadsheet/Debug/*
+.cproject
+.project
