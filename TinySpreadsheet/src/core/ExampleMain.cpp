@@ -6,7 +6,6 @@
  */
 
 #include <core/ExampleMain.h>
-#include <otherClasses/YourClass.h>
 
 namespace core {
 
