@@ -5,7 +5,7 @@
  *      Author: Aaron Cohn
  */
 
-#include <core/ExampleMain.h>
+#include "ExampleMain.h"
 
 namespace core {
 

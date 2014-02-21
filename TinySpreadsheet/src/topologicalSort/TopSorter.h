@@ -8,6 +8,8 @@
 #ifndef TOPSORTER_H_
 #define TOPSORTER_H_
 
+#include "DAG.h"
+
 namespace topologicalSort {
 
 class TopSorter {

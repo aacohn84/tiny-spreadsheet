@@ -5,7 +5,7 @@
  *      Author: Aaron Cohn
  */
 
-#include "topologicalSort/DAG.h"
+#include "DAG.h"
 
 namespace topologicalSort {
 

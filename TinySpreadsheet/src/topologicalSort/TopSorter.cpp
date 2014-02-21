@@ -5,7 +5,7 @@
  *      Author: Aaron Cohn
  */
 
-#include "topologicalSort/TopSorter.h"
+#include "TopSorter.h"
 
 namespace topologicalSort {
 

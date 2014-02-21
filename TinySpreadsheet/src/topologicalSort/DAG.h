@@ -8,6 +8,8 @@
 #ifndef DAG_H_
 #define DAG_H_
 
+#include "Vertices.h"
+
 namespace topologicalSort {
 
 class DAG {

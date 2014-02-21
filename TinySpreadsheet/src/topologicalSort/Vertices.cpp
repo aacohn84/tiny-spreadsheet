@@ -5,7 +5,7 @@
  *      Author: Aaron Cohn
  */
 
-#include "topologicalSort/Vertices.h"
+#include "Vertices.h"
 
 namespace topologicalSort {
 
