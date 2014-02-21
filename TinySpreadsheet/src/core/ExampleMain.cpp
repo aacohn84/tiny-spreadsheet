@@ -7,10 +7,6 @@
 
 #include "ExampleMain.h"
 
-namespace core {
-
-} /* namespace core */
-
 int main() {
 	/*
 	 * This file may not be needed since we're using Qt. Bottom line is, there

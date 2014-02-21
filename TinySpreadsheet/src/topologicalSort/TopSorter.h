@@ -9,14 +9,17 @@
 #define TOPSORTER_H_
 
 #include "DAG.h"
+#include <memory>
 
 namespace topologicalSort {
 
+using namespace std;
+
 class TopSorter {
-	DAG *graph;
+	shared_ptr<DAG> graph;
 
 public:
-	TopSorter(DAG *graph);
+	TopSorter(const shared_ptr<DAG> &graph);
 	virtual ~TopSorter();
 
 	Vertices sort();

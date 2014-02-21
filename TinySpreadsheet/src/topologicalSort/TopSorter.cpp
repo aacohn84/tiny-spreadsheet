@@ -9,10 +9,13 @@
 
 namespace topologicalSort {
 
-TopSorter::TopSorter(DAG *graph) {
-	this->graph = graph;
+TopSorter::TopSorter(const shared_ptr<DAG> &graph)
+	: graph(graph)
+{
 }
 
-TopSorter::~TopSorter() {}
+TopSorter::~TopSorter()
+{
+}
 
 } /* namespace core */
