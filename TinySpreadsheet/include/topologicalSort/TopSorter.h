@@ -8,12 +8,16 @@
 #ifndef TOPSORTER_H_
 #define TOPSORTER_H_
 
-namespace core {
+namespace topologicalSort {
 
 class TopSorter {
+	DAG *graph;
+
 public:
-	TopSorter();
+	TopSorter(DAG *graph);
 	virtual ~TopSorter();
+
+	Vertices sort();
 };
 
 } /* namespace core */

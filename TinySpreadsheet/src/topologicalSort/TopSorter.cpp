@@ -5,12 +5,12 @@
  *      Author: Aaron Cohn
  */
 
-#include "core/TopSorter.h"
+#include "topologicalSort/TopSorter.h"
 
-namespace core {
+namespace topologicalSort {
 
-TopSorter::TopSorter() {
-
+TopSorter::TopSorter(DAG *graph) {
+	this->graph = graph;
 }
 
 TopSorter::~TopSorter() {}
