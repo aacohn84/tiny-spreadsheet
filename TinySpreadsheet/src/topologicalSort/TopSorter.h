@@ -13,7 +13,7 @@
 
 namespace topologicalSort {
 
-using namespace std;
+using std::shared_ptr;
 
 class TopSorter {
 	shared_ptr<DAG> graph;

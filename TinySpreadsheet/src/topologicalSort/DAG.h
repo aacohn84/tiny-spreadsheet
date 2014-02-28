@@ -14,7 +14,9 @@ namespace topologicalSort {
 
 class DAG {
 public:
-	Vertices getVertices();
+	virtual ~DAG();
+
+	virtual Vertices getVertices() = 0;
 };
 
 } /* namespace topologicalSort */

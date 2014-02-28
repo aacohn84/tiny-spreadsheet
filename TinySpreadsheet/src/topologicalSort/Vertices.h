@@ -10,11 +10,14 @@
 #ifndef VERTICES_H_
 #define VERTICES_H_
 
+#include "Iterator.h"
+
 namespace topologicalSort {
 
 class Vertices {
 public:
-
+	Iterator begin();
+	Iterator end();
 };
 
 } /* namespace topologicalSort */
