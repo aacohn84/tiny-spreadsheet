@@ -18,6 +18,7 @@ class Cell
 public:
 	Cell(string _name, string _rawInput);
 	~Cell();
+	string displayValue;
 	string name;
 	bool hasNumValue;
 	bool hasError;
@@ -29,18 +30,18 @@ public:
 
 class Evaluator
 {
-	Cell* currentCell;
-	char currentChar;
-	vector<char*> operators;
-	vector<char*> values;
+
 public:
 	Evaluator();
 	~Evaluator();
 	void evaluate(Cell* targetCell);
 private:
-	void evaluateExpression();
+	Cell* getCell(string cellName);
+	void evaluateExpression(Cell* targetCell);
 	double calculateNumValue();
-	bool isNumber();
+	bool isNumber(string rawInput);
+	int getCharType(char input);
+	bool evaluateBuffer(string myBuffer);
 };
 
 
