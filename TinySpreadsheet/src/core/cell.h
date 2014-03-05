@@ -15,15 +15,19 @@
 
 class Cell {
 private:
+	// Variables
 	Evaluator e;
-	std::vector children;
 	int nInDegrees;
 	std::string rawInput;
 	std::string displayInput;
 public:
-	Cell();
-	Cell(std::string input);
-	std::string evalRowInput(std::string input);
+	// Variables
+	std::vector children;
+
+	// Methods
+	Cell(int degree);
+	Cell(std::string input, int degree);
+	void evalRowInput(std::string input);
 	std::string getDisplayString();
 };
 
