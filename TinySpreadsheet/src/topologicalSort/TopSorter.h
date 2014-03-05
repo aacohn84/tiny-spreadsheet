@@ -18,7 +18,7 @@ using std::shared_ptr;
 using std::stack;
 
 class TopSorter {
-	shared_ptr<DAG> graph;
+	DAGPtr graph;
 
 public:
 	TopSorter(const shared_ptr<DAG> &graph);
