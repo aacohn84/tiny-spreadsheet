@@ -12,14 +12,20 @@
 
 namespace topologicalSort {
 
-class Vertex {
-public:
-	Vertex();
-	virtual ~Vertex();
+using std::shared_ptr;
 
-	virtual Vertices getEdges() = 0;
-	virtual int getInDegrees() = 0;
+class Vertex {
+private:
+	bool visited;
+	int inDegrees;
+public:
+	shared_ptr<Vertices> getAdjacent();
+	int getInDegrees();
+	bool isVisited();
+	bool setVisited(bool visited);
 };
+
+typedef shared_ptr<Vertex> VertexPtr;
 
 } /* namespace topologicalSort */
 

@@ -10,15 +10,28 @@
 #ifndef VERTICES_H_
 #define VERTICES_H_
 
-#include "Iterator.h"
+#include <vector>
+#include <memory>
+
+#include "Vertex.h"
 
 namespace topologicalSort {
 
+using std::vector;
+using std::shared_ptr;
+
 class Vertices {
+private:
+	vector<Vertex> vertices;
+
 public:
-	Iterator begin();
-	Iterator end();
+	vector<Vertex>::iterator begin() const;
+	vector<Vertex>::iterator end() const;
+
+	void add(const Vertex &v);
 };
+
+typedef shared_ptr<Vertices> VerticesPtr;
 
 } /* namespace topologicalSort */
 

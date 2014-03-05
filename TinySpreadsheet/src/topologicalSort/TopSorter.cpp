@@ -4,10 +4,10 @@
  *  Created on: Feb 20, 2014
  *      Author: Aaron Cohn
  */
+#include <stack>
+#include <algorithm>
 
 #include "TopSorter.h"
-
-#include <stack>
 
 namespace topologicalSort {
 
@@ -22,35 +22,42 @@ TopSorter::~TopSorter()
 {
 }
 
-Vertices sort()
+void TopSorter::sortByInDegrees(Vertices &v)
 {
-	/*
-	 * Order vertices in a queue by least in-degrees
-	 * An error occurs if no vertex has 0 in-degrees.
-	 *
-	 * Create an empty stack
-	 * Mark all vertices unvisited
-	 *
-	 * For each vertex V:
-	 * 	if V not visited:
-	 * 		recursively visit all of V's adjacent vertices
-	 *
-	 * 	While the stack is not empty:
-	 * 		pop into a queue
-	 */
-	return Vertices();
+
 }
 
-void recursiveTopSort()
+shared_ptr<Vertices> TopSorter::sort()
 {
-	/*
-	 * Mark the current vertex V as visited
-	 * For each vertex A adjacent to V:
-	 * 		if A not visited:
-	 *	 		recursively visit all of A's adjacent vertices
-	 *
-	 * Push V onto the stack
-	 */
+	VerticesPtr vertices = graph->getVertices();
+	sortByInDegrees(*vertices);
+
+	stack<VertexPtr> s;
+
+	// Mark all vertices unvisited
+	for (Vertex &v : *vertices) {
+		v.setVisited(false);
+	}
+
+	for (Vertex &v : *vertices) {
+		if (!v.isVisited()) {
+			recursiveTopSort(v, s);
+		}
+	}
+
+	return vertices;
+}
+
+void TopSorter::recursiveTopSort(Vertex &v, stack<VertexPtr> &s)
+{
+	v.setVisited(true);
+	VerticesPtr adjacent = v.getAdjacent();
+	for (Vertex &a : *adjacent) {
+		if (!a.isVisited()) {
+			recursiveTopSort(a, s);
+		}
+	}
+	s.push(VertexPtr(&v));
 }
 
 } /* namespace core */

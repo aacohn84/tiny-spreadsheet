@@ -9,13 +9,4 @@
 
 namespace topologicalSort {
 
-Vertex::Vertex() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Vertex::~Vertex() {
-	// TODO Auto-generated destructor stub
-}
-
 } /* namespace topologicalSort */
