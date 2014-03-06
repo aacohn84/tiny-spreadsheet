@@ -14,7 +14,7 @@ private:
 	std::string displayInput;
 
 public:
-	std::vector children;
+	std::vector dependencies;
 
 	Cell(int degree){
 		Cell('', degree);
@@ -24,7 +24,7 @@ public:
 		rawInput = input;
 		nInDegrees = degree;
 		e = new Evaluator();
-		children = new std::vector<Cell>;
+		dependencies = new std::vector<Cell>;
 	}
 
 	void evalRowInput(std::string input) {

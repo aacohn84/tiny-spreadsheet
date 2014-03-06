@@ -22,7 +22,7 @@ private:
 	std::string displayInput;
 public:
 	// Variables
-	std::vector children;
+	std::vector dependencies;
 
 	// Methods
 	Cell(int degree);
