@@ -24,7 +24,7 @@ public:
 	bool hasError;
 	string rawInput;
 	double numValue;
-	int dependencies;
+	vector<string>* dependencies;
 };
 
 class Dag

@@ -9,6 +9,7 @@
 //valid cell names consist of a single letter followed by a string of digits that doesn't start with 0
 #include <iostream>
 #include <sstream>
+#include <regex>
 
 using namespace std;
 Cell::Cell(string _name, string _rawInput)
@@ -18,7 +19,7 @@ Cell::Cell(string _name, string _rawInput)
 	numValue = 0;
 	hasNumValue = false;
 	hasError = false;
-	dependencies = 0;
+	dependencies = new vector<string>;
 	displayValue = _rawInput;
 }
 
@@ -69,6 +70,7 @@ void Dag::addCell(Cell* newCell)
 		temp->numValue = newCell->numValue;
 		temp->hasNumValue = newCell->hasNumValue;
 		temp->hasError = newCell->hasError;
+//I think I need some deep copying thing going on here. Not sure.
 		temp->dependencies = newCell->dependencies;
 		temp->displayValue = newCell->displayValue;
 	}
@@ -76,6 +78,7 @@ void Dag::addCell(Cell* newCell)
 
 void Evaluator::evalAllCells()
 {
+	cout << "re-evaluating" << endl;
 	for (unsigned i = 0; i < myDag.allCells->size(); i++)
 	{
 		evaluate(myDag.allCells->at(i));
@@ -89,7 +92,7 @@ void Evaluator::printAllCells()
 	{
 		temp = myDag.allCells->at(i);
 		cout << "Cell " << temp->name << endl;
-		cout << "Has " << temp->dependencies << " dependencies\n";
+		cout << "Has " << temp->dependencies->size() << " dependencies\n";
 		cout << "Raw Input: " << temp->rawInput << endl;
 		cout << "Display Value: " << temp->displayValue << endl;
 		if (temp->hasNumValue)
@@ -102,9 +105,10 @@ void Evaluator::printAllCells()
 void Evaluator::evaluate(Cell* targetCell)
 {
 	Cell* currentCell = targetCell;
-	currentCell->dependencies = 0;
+	currentCell->dependencies = new vector<string>;
 	currentCell->hasError = false;
 	currentCell->hasNumValue = false;
+	currentCell->displayValue = currentCell->rawInput;
 
 
 	if (currentCell->rawInput.length())
@@ -118,12 +122,12 @@ void Evaluator::evaluate(Cell* targetCell)
 			currentCell->numValue = ::atof(currentCell->rawInput.c_str());
 			currentCell->hasNumValue = true;
 			currentCell->hasError = false;
-			currentCell->dependencies = 0;
+			currentCell->dependencies = new vector<string>;
 		}
 		else
 		{
 			currentCell->hasNumValue = false;
-			currentCell->dependencies = 0;
+			currentCell->dependencies = new vector<string>;
 			currentCell->hasError = false;
 		}
 	}
@@ -194,8 +198,9 @@ void Evaluator::evaluateBuffer(string buffer, vector<float>* values, Cell* curre
 				{
 					if (!isdigit(buffer[i]))
 						currentCell->hasError = true;
+					else
+						currentCell->dependencies->push_back(buffer);
 				}
-				currentCell->dependencies++;
 				Cell* aCell = myDag.getCell(buffer);
 				if(myDag.getCell(buffer))
 				{
