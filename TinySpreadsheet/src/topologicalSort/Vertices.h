@@ -22,11 +22,17 @@ using std::shared_ptr;
 
 class Vertices {
 private:
-	vector<Vertex> vertices;
+	vector<VertexPtr> vertices;
 
 public:
-	vector<Vertex>::iterator begin() const;
-	vector<Vertex>::iterator end() const;
+	vector<VertexPtr>::iterator begin()
+	{
+		return vertices.begin();
+	}
+	vector<VertexPtr>::iterator end()
+	{
+		return vertices.end();
+	}
 
 	void add(const Vertex &v);
 };

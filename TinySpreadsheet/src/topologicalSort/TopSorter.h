@@ -21,12 +21,12 @@ class TopSorter {
 	DAGPtr graph;
 
 public:
-	TopSorter(const shared_ptr<DAG> &graph);
+	TopSorter(DAGPtr graph);
 	virtual ~TopSorter();
 
 	VerticesPtr sort();
-	void recursiveTopSort(Vertex &v, stack<VertexPtr> &s);
-	void sortByInDegrees(Vertices &v);
+	void recursiveTopSort(VertexPtr v, stack<VertexPtr> &s);
+	void sortByInDegrees(VerticesPtr v);
 };
 
 } /* namespace core */
