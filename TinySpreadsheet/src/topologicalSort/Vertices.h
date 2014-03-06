@@ -25,16 +25,9 @@ private:
 	vector<VertexPtr> vertices;
 
 public:
-	vector<VertexPtr>::iterator begin()
-	{
-		return vertices.begin();
-	}
-	vector<VertexPtr>::iterator end()
-	{
-		return vertices.end();
-	}
-
-	void add(const Vertex &v);
+	vector<VertexPtr>::iterator begin();
+	vector<VertexPtr>::iterator end();
+	void add(VertexPtr v);
 };
 
 typedef shared_ptr<Vertices> VerticesPtr;

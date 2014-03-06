@@ -21,22 +21,12 @@ private:
 	bool visited;
 	int inDegrees;
 public:
-	Vertices* getAdjacent()
-	{
-		return nullptr;
-	}
-	int getInDegrees()
-	{
-		return 0;
-	}
-	bool isVisited()
-	{
-		return false;
-	}
-	bool setVisited(bool visited)
-	{
-		return false;
-	}
+	Vertex();
+	Vertices* getAdjacent();
+	int getInDegrees();
+	void addInDegree();
+	bool isVisited();
+	bool setVisited(bool visited);
 };
 
 typedef shared_ptr<Vertex> VertexPtr;
