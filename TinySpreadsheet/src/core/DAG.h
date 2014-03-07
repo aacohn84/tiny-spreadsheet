@@ -11,12 +11,15 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <Cell.cpp>
+
+namespace core{
 
 class DAG {
 private:
 	// Variables
-	std::map<std::string, Cell> dag;
-	std::vector<Cell> cells;
+	std::map<std::string, Cell*> dag;
+	std::vector<Cell*> cells;
 
 	// Methods
 	bool exists(std::string key);
@@ -25,14 +28,17 @@ public:
 	// Constructor
 	DAG();
 
+	// Destructor
+	~DAG();
+
 	// Methods
 	void addCell(std::string coord, Cell* input);
 	Cell* getCell(std::string coord);
-	std::map<std::string, Cell>* getMap();
-	std::vector<Cell>* getCells();
-	void setOrderedCells(std::vector<Cell>* cells);
+	std::map<std::string, Cell*>* getMap();
+	std::vector<Cell*>* getCells();
+	void setOrderedCells(std::vector<Cell*>* cells);
 };
-
+}
 
 
 #endif /* DAG_H_ */

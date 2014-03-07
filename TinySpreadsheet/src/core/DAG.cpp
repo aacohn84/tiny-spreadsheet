@@ -5,9 +5,17 @@
  *      Author: trekkienz
  */
 
-#include <dag.h>
+#include <DAG.h>
 
+
+namespace core {
 DAG::DAG() {}
+
+DAG::~DAG(){
+	for (auto i: dag){
+		delete i.second;
+	}
+}
 
 void DAG::addCell(std::string coord, Cell* input) {
 	if (exists(coord)){
@@ -20,7 +28,7 @@ void DAG::addCell(std::string coord, Cell* input) {
 }
 
 bool DAG::exists(std::string key){
-	for (auto& i: dag){	//std::map<std::string, Cell>::iterator i = dag.begin(); i != dag.end(); i++
+	for (auto& i: dag){	//std::map<std::string, Cell*>::iterator i = dag.begin(); i != dag.end(); i++
 		if (i.first == key){
 			return true;
 		}
@@ -37,14 +45,15 @@ Cell* DAG::getCell(std::string coord){
 	}
 }
 
-std::map<std::string, Cell>* DAG::getMap() {
+std::map<std::string, Cell*>* DAG::getMap() {
 	return &dag;
 }
 
-std::vector<Cell>* DAG::getCells() {
+std::vector<Cell*>* DAG::getCells() {
 	return &cells;
 }
 
-void DAG::setOrderedCells(std::vector<Cell>* cells){
+void DAG::setOrderedCells(std::vector<Cell*>* cells){
 	this->cells = cells;
+}
 }

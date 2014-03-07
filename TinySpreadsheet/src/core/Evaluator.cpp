@@ -12,85 +12,75 @@
 #include <regex>
 
 using namespace std;
-Cell::Cell(string _name, string _rawInput)
-{
-	name = _name;
-	rawInput = _rawInput;
-	numValue = 0;
-	hasNumValue = false;
-	hasError = false;
-	dependencies = new vector<string>;
-	displayValue = _rawInput;
-}
 
-
+namespace core {
 Evaluator::Evaluator()
 {
 }
 Evaluator::~Evaluator()
 {}
-Dag::Dag()
-{
-	allCells = new vector<Cell*>();
-}
-Dag::~Dag()
-{}
+//Dag::Dag()
+//{
+//	allCells = new vector<Cell*>();
+//}
+//Dag::~Dag()
+//{}
 
 
 
-Cell* Dag::getCell(string cellName)
-{
-	for(unsigned i = 0; i < allCells->size(); i++)
-	{
-		if (allCells->at(i)->name == cellName)
-		{
-			return allCells->at(i);
-		}
-	}
-	return NULL;
-}
-
-
-void Dag::addCell(Cell* newCell)
-{
-	Cell* temp = getCell(newCell->name);
-	if (newCell->hasNumValue)
-	{
-		stringstream ss (stringstream::in | stringstream::out);
-		ss << newCell->numValue;
-		newCell->displayValue = ss.str();
-	}
-	if(!temp)
-	{
-		allCells->push_back(newCell);
-	}
-	else
-	{
-		temp->rawInput = newCell->rawInput;
-		temp->numValue = newCell->numValue;
-		temp->hasNumValue = newCell->hasNumValue;
-		temp->hasError = newCell->hasError;
-//I think I need some deep copying thing going on here. Not sure.
-		temp->dependencies = newCell->dependencies;
-		temp->displayValue = newCell->displayValue;
-	}
-}
+//Cell* Dag::getCell(string cellName)
+//{
+//	for(unsigned i = 0; i < getCells()->size(); i++)
+//	{
+//		if (getCells()->at(i)->name == cellName)
+//		{
+//			return getCells()->at(i);
+//		}
+//	}
+//	return NULL;
+//}
+//
+//
+//void Dag::addCell(Cell* newCell)
+//{
+//	Cell* temp = getCell(newCell->name);
+//	if (newCell->hasNumValue)
+//	{
+//		stringstream ss (stringstream::in | stringstream::out);
+//		ss << newCell->numValue;
+//		newCell->displayValue = ss.str();
+//	}
+//	if(!temp)
+//	{
+//		getCells()->push_back(newCell);
+//	}
+//	else
+//	{
+//		temp->rawInput = newCell->rawInput;
+//		temp->numValue = newCell->numValue;
+//		temp->hasNumValue = newCell->hasNumValue;
+//		temp->hasError = newCell->hasError;
+////I think I need some deep copying thing going on here. Not sure.
+//		temp->dependencies = newCell->dependencies;
+//		temp->displayValue = newCell->displayValue;
+//	}
+//}
 
 void Evaluator::evalAllCells()
 {
 	cout << "re-evaluating" << endl;
-	for (unsigned i = 0; i < myDag.allCells->size(); i++)
+	for (unsigned i = 0; i < myDag.getCells()->size(); i++)
 	{
-		evaluate(myDag.allCells->at(i));
+		evaluate(myDag.getCells()->at(i));
 	}
 }
 
 void Evaluator::printAllCells()
 {
 	Cell* temp;
-	for (unsigned i = 0; i < myDag.allCells->size(); i++)
+	for (unsigned i = 0; i < myDag.getCells()->size(); i++)
 	{
-		temp = myDag.allCells->at(i);
+		temp = myDag.getCells()->at(i);
 		cout << "Cell " << temp->name << endl;
 		cout << "Has " << temp->dependencies->size() << " dependencies\n";
 		cout << "Raw Input: " << temp->rawInput << endl;
@@ -131,7 +121,7 @@ void Evaluator::evaluate(Cell* targetCell)
 			currentCell->hasError = false;
 		}
 	}
-	myDag.addCell(currentCell);
+	myDag.addCell(currentCell->name, currentCell);
 }
 
 bool Evaluator::isNumber(string rawInput)
@@ -397,4 +387,5 @@ void Evaluator::evaluateExpression(Cell* currentCell) //a10
 		currentCell->hasNumValue = false;
 		currentCell->dependencies = 0;
 	}
+}
 }

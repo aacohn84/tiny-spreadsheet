@@ -11,31 +11,20 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
+#include <DAG.cpp>
 using namespace std;
 
-class Cell
-{
-public:
-	Cell(string _name, string _rawInput);
-	~Cell();
-	string displayValue;
-	string name;
-	bool hasNumValue;
-	bool hasError;
-	string rawInput;
-	double numValue;
-	vector<string>* dependencies;
-};
+//class Dag
+//{
+//public:
+//	Dag();
+//	~Dag();
+//	vector<Cell*>* allCells;
+//	Cell* getCell(string cellName);
+//	void addCell(Cell* newCell);
+//};
 
-class Dag
-{
-public:
-	Dag();
-	~Dag();
-	vector<Cell*>* allCells;
-	Cell* getCell(string cellName);
-	void addCell(Cell* newCell);
-};
+namespace core {
 
 class Evaluator
 {
@@ -43,7 +32,7 @@ public:
 	Evaluator();
 	~Evaluator();
 	void evaluate(Cell* targetCell);
-	Dag myDag;
+	DAG myDag;
 	void evalAllCells();
 	void printAllCells();
 private:
@@ -55,6 +44,7 @@ private:
 
 };
 
+}
 
 
 #endif /* EVALUATOR_H_ */
