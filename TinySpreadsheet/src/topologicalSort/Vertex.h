@@ -17,16 +17,12 @@ using std::shared_ptr;
 class Vertices;
 
 class Vertex {
-private:
-	bool visited;
-	int inDegrees;
 public:
-	Vertex();
-	Vertices* getAdjacent();
-	int getInDegrees();
-	void addInDegree();
-	bool isVisited();
-	bool setVisited(bool visited);
+	virtual Vertices* getAdjacent() = 0;
+	virtual int getInDegrees() = 0;
+	virtual void addInDegree() = 0;
+	virtual bool isVisited() = 0;
+	virtual bool setVisited(bool visited) = 0;
 };
 
 typedef shared_ptr<Vertex> VertexPtr;
