@@ -5,7 +5,11 @@
  *      Author: Aaron Cohn
  */
 
-#include "ExampleMain.h"
+#include <string>
+#include <stdlib.h>
+#include <iostream>
+#include "Evaluator.h"
+using namespace std; /* namespace core */
 
 int main() {
 	/*
@@ -17,6 +21,25 @@ int main() {
 	 * NOTE:
 	 * main() cannot be defined in a namespace. It has to live in global scope.
 	 */
+
+	Evaluator myEvaluator;
+	Cell* a1 = new Cell("A1", "=B3 + 2");
+	Cell* b3 = new Cell("B3", "5");
+	Cell* c2 = new Cell("C2", "I love cats");
+	Cell* d1 = new Cell("D1", "= C2");
+
+	//myEvaluator.evaluate(c2);
+
+
+	myEvaluator.evaluate(a1);
+	myEvaluator.evaluate(b3);
+	myEvaluator.evaluate(c2);
+	myEvaluator.evaluate(d1);
+	myEvaluator.evalAllCells();
+	myEvaluator.printAllCells();
+	cout << "done";
+
+
 
 	return 0;
 }
