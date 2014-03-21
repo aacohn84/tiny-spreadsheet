@@ -8,7 +8,7 @@
 #include <string>
 #include <stdlib.h>
 #include <iostream>
-#include "Evaluator.cpp"
+#include "Evaluator.h"
 
 using namespace std; /* namespace core */
 
