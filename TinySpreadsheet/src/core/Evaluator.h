@@ -11,7 +11,7 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
-#include <DAG.cpp>
+#include <DAG.h>
 using namespace std;
 
 //class Dag

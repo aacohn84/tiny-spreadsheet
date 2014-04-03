@@ -40,7 +40,7 @@ bool DAG::exists(std::string key){
 Cell* DAG::getCell(std::string coord){
 	try {
 		return dag.at(coord);
-	} catch (std::exception e) {
+	} catch (std::exception &e) {
 		return nullptr;
 	}
 }
