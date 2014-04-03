@@ -9,7 +9,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Evaluator.h"
-using namespace std; /* namespace core */
+using namespace std;
+using namespace core;
 
 int main() {
 	/*

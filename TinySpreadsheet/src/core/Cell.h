@@ -8,6 +8,9 @@
 #ifndef CELL_H_
 #define CELL_H_
 
+#include <string>
+#include <vector>
+
 namespace core {
 
 using std::string;
@@ -24,7 +27,7 @@ public:
 	bool hasError;
 	string rawInput;
 	double numValue;
-	vector<string>* dependencies;
+	vector<string> *dependencies;
 };
 
 } /* namespace core */

@@ -5,8 +5,7 @@
  *      Author: trekkienz
  */
 
-#include <DAG.h>
-
+#include "DAG.h"
 
 namespace core {
 DAG::DAG() {}
@@ -53,7 +52,8 @@ std::vector<Cell*>* DAG::getCells() {
 	return &cells;
 }
 
-void DAG::setOrderedCells(std::vector<Cell*>* cells){
-	this->cells = cells;
+void DAG::setOrderedCells(std::vector<Cell*> *cells){
+	this->cells = *cells;
 }
+
 }

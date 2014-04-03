@@ -4,7 +4,7 @@
  *  Created on: Mar 6, 2014
  *      Author: trekkienz
  */
-#include <Cell.h>
+#include "Cell.h"
 
 namespace core {
 Cell::Cell(string _name, string _rawInput)
@@ -14,7 +14,13 @@ Cell::Cell(string _name, string _rawInput)
 	numValue = 0;
 	hasNumValue = false;
 	hasError = false;
-	dependencies = new vector<string>;
 	displayValue = _rawInput;
+	dependencies = new vector<string>();
 }
+
+Cell::~Cell()
+{
+	delete dependencies;
+}
+
 }
