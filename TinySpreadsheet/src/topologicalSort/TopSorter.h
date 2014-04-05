@@ -18,15 +18,17 @@ using std::shared_ptr;
 using std::stack;
 
 class TopSorter {
+private:
 	DAGPtr graph;
+
+	void recursiveTopSort(VertexPtr &v, stack<VertexPtr> &s);
+	void sortByInDegrees(VerticesPtr &v);
 
 public:
 	TopSorter(DAGPtr graph);
 	virtual ~TopSorter();
 
 	VerticesPtr sort();
-	void recursiveTopSort(VertexPtr v, stack<VertexPtr> &s);
-	void sortByInDegrees(VerticesPtr v);
 };
 
 } /* namespace core */

@@ -22,7 +22,7 @@ TopSorter::~TopSorter()
 {
 }
 
-void TopSorter::sortByInDegrees(VerticesPtr v)
+void TopSorter::sortByInDegrees(VerticesPtr &v)
 {
 
 }
@@ -48,7 +48,7 @@ shared_ptr<Vertices> TopSorter::sort()
 	return vertices;
 }
 
-void TopSorter::recursiveTopSort(VertexPtr v, stack<VertexPtr> &s)
+void TopSorter::recursiveTopSort(VertexPtr &v, stack<VertexPtr> &s)
 {
 	v->setVisited(true);
 	VerticesPtr adjacent(v->getAdjacent());
