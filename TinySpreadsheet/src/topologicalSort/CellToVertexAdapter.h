@@ -9,22 +9,28 @@
 #define VERTEXADAPTER_H_
 
 #include "Vertex.h"
+#include "../core/Cell.h"
+#include "../core/DAG.h"
 
 namespace topologicalSort {
 
-class CellToVertexAdapter: public Vertex { // , private Cell
+using core::Cell;
+using core::DAG;
+
+class CellToVertexAdapter: public Vertex, private Cell {
 private:
+	DAG *graph;
 	bool visited;
 	int inDegrees;
 public:
-	CellToVertexAdapter();
+	CellToVertexAdapter(Cell *c, DAG *graph);
 	virtual ~CellToVertexAdapter();
 
 	Vertices* getAdjacent();
 	int getInDegrees();
 	void addInDegree();
 	bool isVisited();
-	bool setVisited(bool visited);
+	void setVisited(bool visited);
 };
 
 } /* namespace topologicalSort */

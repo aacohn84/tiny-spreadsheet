@@ -25,6 +25,7 @@ private:
 	vector<VertexPtr> vertices;
 
 public:
+	virtual ~Vertices() {}
 	vector<VertexPtr>::iterator begin();
 	vector<VertexPtr>::iterator end();
 	void add(VertexPtr v);

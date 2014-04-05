@@ -6,12 +6,19 @@
  */
 
 #include "CellToVertexAdapter.h"
+#include "CellsToVerticesAdapter.h"
+#include <string>
+#include <vector>
+#include <memory>
+
+using std::string;
+using std::vector;
 
 namespace topologicalSort {
 
-CellToVertexAdapter::CellToVertexAdapter() {
-	inDegrees = 0;
-	visited = false;
+CellToVertexAdapter::CellToVertexAdapter(Cell *c, DAG *graph)
+	: Cell(c->name, c->rawInput), graph(graph), visited(false), inDegrees(0)
+{
 }
 
 CellToVertexAdapter::~CellToVertexAdapter() {
@@ -19,11 +26,20 @@ CellToVertexAdapter::~CellToVertexAdapter() {
 }
 
 Vertices* CellToVertexAdapter::getAdjacent() {
-	return nullptr;
+	// collect references to the adjacent cells in a vector
+	vector<Cell*> *adjacentCells = new vector<Cell*>();
+	for (string dependency : *dependencies) {
+		adjacentCells->push_back(graph->getCell(dependency));
+	}
+
+	// convert Cells to Vertices
+	Vertices *adjacentVertices = new CellsToVerticesAdapter(adjacentCells, graph);
+
+	return adjacentVertices;
 }
 
 int CellToVertexAdapter::getInDegrees() {
-	return 0;
+	return inDegrees;
 }
 
 void CellToVertexAdapter::addInDegree() {
@@ -31,11 +47,11 @@ void CellToVertexAdapter::addInDegree() {
 }
 
 bool CellToVertexAdapter::isVisited() {
-	return false;
+	return visited;
 }
 
-bool CellToVertexAdapter::setVisited(bool visited) {
-	return false;
+void CellToVertexAdapter::setVisited(bool visited) {
+	this->visited = visited;
 }
 
 } /* namespace topologicalSort */
