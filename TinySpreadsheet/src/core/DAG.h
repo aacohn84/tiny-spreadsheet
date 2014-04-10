@@ -5,8 +5,8 @@
  *      Author: trekkienz
  */
 
-#ifndef DAG_H_
-#define DAG_H_
+#ifndef CORE_DAG_H_
+#define CORE_DAG_H_
 
 #include <map>
 #include <vector>
@@ -16,7 +16,7 @@
 namespace core{
 
 class DAG {
-private:
+protected:
 	// Variables
 	std::map<std::string, Cell*> dag;
 	std::vector<Cell*> cells;
@@ -41,4 +41,4 @@ public:
 }
 
 
-#endif /* DAG_H_ */
+#endif /* CORE_DAG_H_ */

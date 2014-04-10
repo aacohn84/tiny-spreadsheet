@@ -16,11 +16,10 @@
 namespace topologicalSort {
 
 using core::Cell;
-using core::DAG;
 
 class CellsToVerticesAdapter: public Vertices {
 public:
-	CellsToVerticesAdapter(std::vector<Cell*> *cells, DAG *graph);
+	CellsToVerticesAdapter(std::vector<Cell*> *cells, core::DAG *graph);
 	virtual ~CellsToVerticesAdapter();
 };
 

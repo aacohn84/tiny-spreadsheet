@@ -12,7 +12,7 @@ namespace topologicalSort {
 
 using std::vector;
 
-CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> *cells, DAG *graph) {
+CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> *cells, core::DAG *graph) {
 	// convert each Cell* to Vertex* and store in vector
 	for (Cell *cell : *cells) {
 		VertexPtr vertexPtr(new CellToVertexAdapter(cell, graph));

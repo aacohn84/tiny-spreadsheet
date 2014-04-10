@@ -5,8 +5,8 @@
  *      Author: Aaron Cohn
  */
 
-#ifndef DAG_H_
-#define DAG_H_
+#ifndef TOPOLOGICAL_SORT_DAG_H_
+#define TOPOLOGICAL_SORT_DAG_H_
 
 #include <memory>
 
@@ -28,4 +28,4 @@ typedef shared_ptr<DAG> DAGPtr;
 
 } /* namespace topologicalSort */
 
-#endif /* DAG_H_ */
+#endif /* TOPOLOGICAL_SORT_DAG_H_ */
