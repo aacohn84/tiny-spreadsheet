@@ -16,13 +16,13 @@ DAG::~DAG(){
 	}
 }
 
-void DAG::addCell(std::string coord, Cell* input) {
-	if (exists(coord)){
-		dag[coord] = input;
+void DAG::addCell(Cell* input) {
+	if (exists(input->name)){
+		dag[input->name] = input;
 	}
 	else
 	{
-		dag.emplace(coord, input);
+		dag.emplace(input->name, input);
 	}
 }
 

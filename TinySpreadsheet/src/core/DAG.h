@@ -32,7 +32,7 @@ public:
 	~DAG();
 
 	// Methods
-	void addCell(std::string coord, Cell* input);
+	void addCell(Cell* input);
 	Cell* getCell(std::string coord);
 	std::map<std::string, Cell*>* getMap();
 	std::vector<Cell*>* getCells();
