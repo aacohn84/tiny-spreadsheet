@@ -9,15 +9,14 @@
 #include "CellsToVerticesAdapter.h"
 #include <string>
 #include <vector>
-#include <memory>
 
 using std::string;
 using std::vector;
 
 namespace topologicalSort {
 
-CellToVertexAdapter::CellToVertexAdapter(Cell *c, DAG *graph)
-	: Cell(c->name, c->rawInput), graph(graph), visited(false), inDegrees(0)
+CellToVertexAdapter::CellToVertexAdapter(Cell *c, core::DAG *graph)
+	: graph(graph), underlyingCell(c), visited(false), inDegrees(0)
 {
 }
 
@@ -28,7 +27,7 @@ CellToVertexAdapter::~CellToVertexAdapter() {
 Vertices* CellToVertexAdapter::getAdjacent() {
 	// collect references to the adjacent cells in a vector
 	vector<Cell*> *adjacentCells = new vector<Cell*>();
-	for (string dependency : *dependencies) {
+	for (string dependency : *(underlyingCell->dependencies)) {
 		adjacentCells->push_back(graph->getCell(dependency));
 	}
 

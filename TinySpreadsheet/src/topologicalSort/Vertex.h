@@ -12,8 +12,6 @@
 
 namespace topologicalSort {
 
-using std::shared_ptr;
-
 class Vertices;
 
 class Vertex {
@@ -26,7 +24,7 @@ public:
 	virtual void setVisited(bool visited) = 0;
 };
 
-typedef shared_ptr<Vertex> VertexPtr;
+typedef std::shared_ptr<Vertex> VertexPtr;
 
 } /* namespace topologicalSort */
 

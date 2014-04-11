@@ -13,7 +13,7 @@ namespace topologicalSort {
 
 using namespace std;
 
-TopSorter::TopSorter(DAGPtr graph)
+TopSorter::TopSorter(DAG *graph)
 	: graph(graph)
 {
 }
@@ -22,24 +22,24 @@ TopSorter::~TopSorter()
 {
 }
 
-void TopSorter::sortByInDegrees(VerticesPtr &v)
+void TopSorter::sortByInDegrees(Vertices *v)
 {
 
 }
 
-shared_ptr<Vertices> TopSorter::sort()
+Vertices* TopSorter::sort()
 {
-	VerticesPtr vertices = graph->getVertices();
+	Vertices *vertices = graph->getVertices();
 	sortByInDegrees(vertices);
 
-	stack<VertexPtr> s;
+	stack<Vertex *> s;
 
 	// Mark all vertices unvisited
-	for (VertexPtr v : *vertices) {
+	for (Vertex *v : *vertices) {
 		v->setVisited(false);
 	}
 
-	for (VertexPtr v : *vertices) {
+	for (Vertex *v : *vertices) {
 		if (!v->isVisited()) {
 			recursiveTopSort(v, s);
 		}
@@ -48,16 +48,16 @@ shared_ptr<Vertices> TopSorter::sort()
 	return vertices;
 }
 
-void TopSorter::recursiveTopSort(VertexPtr &v, stack<VertexPtr> &s)
+void TopSorter::recursiveTopSort(Vertex *v, stack<Vertex *> &s)
 {
 	v->setVisited(true);
-	VerticesPtr adjacent(v->getAdjacent());
-	for (VertexPtr a : *adjacent) {
+	Vertices *adjacent = v->getAdjacent();
+	for (Vertex *a : *adjacent) {
 		if (!a->isVisited()) {
 			recursiveTopSort(a, s);
 		}
 	}
-	s.push(VertexPtr(v));
+	s.push(v);
 }
 
 } /* namespace core */

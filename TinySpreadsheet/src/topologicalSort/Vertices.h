@@ -11,27 +11,18 @@
 #define VERTICES_H_
 
 #include <vector>
-#include <memory>
 
 #include "Vertex.h"
 
 namespace topologicalSort {
 
-using std::vector;
-using std::shared_ptr;
-
 class Vertices {
-private:
-	vector<VertexPtr> vertices;
-
 public:
 	virtual ~Vertices() {}
-	vector<VertexPtr>::iterator begin();
-	vector<VertexPtr>::iterator end();
-	void add(VertexPtr v);
+	virtual std::vector<Vertex*>::iterator begin() = 0;
+	virtual std::vector<Vertex*>::iterator end() = 0;
+	virtual void add(Vertex *v) = 0;
 };
-
-typedef shared_ptr<Vertices> VerticesPtr;
 
 } /* namespace topologicalSort */
 

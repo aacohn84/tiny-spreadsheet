@@ -8,27 +8,24 @@
 #ifndef TOPSORTER_H_
 #define TOPSORTER_H_
 
-#include <memory>
+#include <stack>
 
 #include "DAG.h"
 
 namespace topologicalSort {
 
-using std::shared_ptr;
-using std::stack;
-
 class TopSorter {
 private:
-	DAGPtr graph;
+	DAG *graph;
 
-	void recursiveTopSort(VertexPtr &v, stack<VertexPtr> &s);
-	void sortByInDegrees(VerticesPtr &v);
+	void recursiveTopSort(Vertex *v, std::stack<Vertex *> &s);
+	void sortByInDegrees(Vertices *v);
 
 public:
-	TopSorter(DAGPtr graph);
+	TopSorter(DAG *graph);
 	virtual ~TopSorter();
 
-	VerticesPtr sort();
+	Vertices* sort();
 };
 
 } /* namespace core */

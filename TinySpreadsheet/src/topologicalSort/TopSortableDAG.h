@@ -8,18 +8,23 @@
 #ifndef TOPSORTABLEDAG_H_
 #define TOPSORTABLEDAG_H_
 
-#include "../core/DAG.h"
+#include "CellsToVerticesAdapter.h"
 #include "DAG.h"
 #include "Vertices.h"
+#include "../core/DAG.h"
 
 namespace topologicalSort {
 
 class TopSortableDAG: public topologicalSort::DAG, public core::DAG {
+private:
+	CellsToVerticesAdapter *cellsAsVertices;
+
 public:
 	TopSortableDAG(core::DAG *graph);
 	~TopSortableDAG();
 
-	VerticesPtr getVertices();
+	Vertices* getVertices();
+	Cell* getCells();
 };
 
 } /* namespace topologicalSort */

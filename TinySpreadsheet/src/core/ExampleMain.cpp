@@ -9,8 +9,14 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Evaluator.h"
+#include "../topologicalSort/TopSorter.h"
+#include "../topologicalSort/TopSortableDAG.h"
+#include "DAG.h"
+
 using namespace std;
 using namespace core;
+using topologicalSort::TopSortableDAG;
+using topologicalSort::TopSorter;
 
 int main() {
 	/*
@@ -40,7 +46,11 @@ int main() {
 	myEvaluator.printAllCells();
 	cout << "done";
 
-
+	DAG theDag;
+	TopSortableDAG sortableDag(&theDag);
+	topologicalSort::DAG *dagPtr = &sortableDag;
+	TopSorter topSorter(dagPtr);
+	topSorter.sort();
 
 	return 0;
 }

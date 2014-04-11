@@ -11,17 +11,37 @@
 namespace topologicalSort {
 
 using std::vector;
+using core::Cell;
 
 CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> *cells, core::DAG *graph) {
 	// convert each Cell* to Vertex* and store in vector
 	for (Cell *cell : *cells) {
-		VertexPtr vertexPtr(new CellToVertexAdapter(cell, graph));
+		Vertex * vertexPtr(new CellToVertexAdapter(cell, graph));
 		add(vertexPtr);
 	}
 }
 
 CellsToVerticesAdapter::~CellsToVerticesAdapter() {
 	// I used smart pointers, so I don't have to deallocate anything myself :-)
+}
+
+vector<Vertex*>::iterator CellsToVerticesAdapter::begin()
+{
+	return cellsAsVertices.begin();
+}
+vector<Vertex*>::iterator CellsToVerticesAdapter::end()
+{
+	return cellsAsVertices.end();
+}
+
+void CellsToVerticesAdapter::add(Vertex *v) {
+	CellToVertexAdapter *cellAsVertex = dynamic_cast<CellToVertexAdapter*>(v);
+	if (cellAsVertex) {
+		cellsAsVertices.push_back(cellAsVertex);
+	}
+	else {
+		throw "Could not convert Vertex* to CellToVertexAdapter* :-(\n";
+	}
 }
 
 } /* namespace topologicalSort */
