@@ -11,10 +11,19 @@
 
 namespace topologicalSort {
 
+using std::string;
+using std::map;
+using core::Cell;
+
 TopSortableDAG::TopSortableDAG(core::DAG *graph)
-	: core::DAG(*graph),
-	  cellsAsVertices(new CellsToVerticesAdapter(&cells, this))
+	: core::DAG(*graph)
 {
+	cells.clear();
+	map<string, Cell*> *dagMap = graph->getMap();
+	for (auto cellsEntry : *dagMap) {
+		cells.push_back(cellsEntry.second);
+	}
+	cellsAsVertices = new CellsToVerticesAdapter(&cells, this);
 }
 
 TopSortableDAG::~TopSortableDAG() {

@@ -3,3 +3,5 @@ TinySpreadsheet/Debug/*
 .project
 TinySpreadsheet/.settings/*
 TinySpreadsheet/.gitignore
+TinySpreadsheet.sln
+TinySpreadsheet.v12.suo

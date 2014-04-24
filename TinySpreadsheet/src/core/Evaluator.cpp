@@ -121,7 +121,7 @@ void Evaluator::evaluate(Cell* targetCell)
 			currentCell->hasError = false;
 		}
 	}
-	myDag.addCell(currentCell);
+	myDag.updateCell(currentCell);
 }
 
 bool Evaluator::isNumber(string rawInput)

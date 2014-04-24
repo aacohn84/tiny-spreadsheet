@@ -16,32 +16,33 @@ DAG::~DAG(){
 	}
 }
 
-void DAG::addCell(Cell* input) {
-	if (exists(input->name)){
+void DAG::updateCell(Cell* input) {
+	if (exists(input->name)) {
+		if (input->rawInput.empty()) {
+			dag.erase(input->name);
+		}
 		dag[input->name] = input;
 	}
-	else
-	{
+	else {
 		dag.emplace(input->name, input);
 	}
-}
-
-bool DAG::exists(std::string key){
-	for (auto& i: dag){	//std::map<std::string, Cell*>::iterator i = dag.begin(); i != dag.end(); i++
-		if (i.first == key){
-			return true;
-		}
-	}
-
-	return false;
 }
 
 Cell* DAG::getCell(std::string coord){
 	try {
 		return dag.at(coord);
 	} catch (std::exception &e) {
-		return nullptr;
+		throw "Cell does not exist!";
 	}
+}
+
+bool DAG::exists(std::string key){
+	for (auto& i: dag) {
+		if (i.first == key){
+			return true;
+		}
+	}
+	return false;
 }
 
 std::map<std::string, Cell*>* DAG::getMap() {
