@@ -32,7 +32,7 @@ Cell* DAG::getCell(std::string coord){
 	try {
 		return dag.at(coord);
 	} catch (std::exception &e) {
-		throw "Cell does not exist!";
+		return nullptr;
 	}
 }
 
