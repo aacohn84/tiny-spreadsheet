@@ -16,16 +16,11 @@ namespace topologicalSort {
 
 class TopSorter {
 private:
-	DAG *graph;
-
 	void recursiveTopSort(Vertex *v, std::stack<Vertex *> &s);
 	void sortByInDegrees(Vertices *v);
 
 public:
-	TopSorter(DAG *graph);
-	virtual ~TopSorter();
-
-	void sort();
+	void sort(Vertices *vertices);
 };
 
 } /* namespace core */

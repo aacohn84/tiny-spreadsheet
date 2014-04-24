@@ -19,7 +19,6 @@ namespace topologicalSort {
 class TopSortableDAG: public topologicalSort::DAG, public core::DAG {
 private:
 	CellsToVerticesAdapter *cellsAsVertices;
-	TopSorter *topSorter;
 
 public:
 	TopSortableDAG(core::DAG *graph);

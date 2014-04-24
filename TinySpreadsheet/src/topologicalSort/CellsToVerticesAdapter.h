@@ -27,7 +27,7 @@ public:
 
 	std::vector<Vertex*>::iterator begin();
 	std::vector<Vertex*>::iterator end();
-	void add(Vertex* v);
+	void add(Vertex *v);
 	void clear();
 };
 

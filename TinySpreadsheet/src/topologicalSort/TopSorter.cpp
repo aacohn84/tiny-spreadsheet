@@ -13,23 +13,13 @@ namespace topologicalSort {
 
 using namespace std;
 
-TopSorter::TopSorter(DAG *graph)
-	: graph(graph)
-{
-}
-
-TopSorter::~TopSorter()
-{
-}
-
 void TopSorter::sortByInDegrees(Vertices *v)
 {
-
+	// is this necessary?
 }
 
-void TopSorter::sort()
+void TopSorter::sort(Vertices *vertices)
 {
-	Vertices *vertices = graph->getVertices();
 	sortByInDegrees(vertices);
 
 	stack<Vertex *> s;

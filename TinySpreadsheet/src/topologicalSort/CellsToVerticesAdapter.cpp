@@ -22,7 +22,7 @@ CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> *cells, core::DAG *
 }
 
 CellsToVerticesAdapter::~CellsToVerticesAdapter() {
-	// I used smart pointers, so I don't have to deallocate anything myself :-)
+	// May need to deallocate vertices here
 }
 
 vector<Vertex*>::iterator CellsToVerticesAdapter::begin()
