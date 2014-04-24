@@ -27,7 +27,7 @@ void TopSorter::sortByInDegrees(Vertices *v)
 
 }
 
-Vertices* TopSorter::sort()
+void TopSorter::sort()
 {
 	Vertices *vertices = graph->getVertices();
 	sortByInDegrees(vertices);
@@ -39,13 +39,19 @@ Vertices* TopSorter::sort()
 		v->setVisited(false);
 	}
 
+	// sort into stack
 	for (Vertex *v : *vertices) {
 		if (!v->isVisited()) {
 			recursiveTopSort(v, s);
 		}
 	}
 
-	return vertices;
+	// re-order the original list
+	vertices->clear();
+	while (!s.empty()) {
+		vertices->add(s.top());
+		s.pop();
+	}
 }
 
 void TopSorter::recursiveTopSort(Vertex *v, stack<Vertex *> &s)

@@ -16,7 +16,7 @@ using core::Cell;
 CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> *cells, core::DAG *graph) {
 	// convert each Cell* to Vertex* and store in vector
 	for (Cell *cell : *cells) {
-		Vertex * vertexPtr(new CellToVertexAdapter(cell, graph));
+		Vertex *vertexPtr = new CellToVertexAdapter(cell, graph);
 		add(vertexPtr);
 	}
 }
@@ -35,13 +35,11 @@ vector<Vertex*>::iterator CellsToVerticesAdapter::end()
 }
 
 void CellsToVerticesAdapter::add(Vertex *v) {
-	CellToVertexAdapter *cellAsVertex = dynamic_cast<CellToVertexAdapter*>(v);
-	if (cellAsVertex) {
-		cellsAsVertices.push_back(cellAsVertex);
-	}
-	else {
-		throw "Could not convert Vertex* to CellToVertexAdapter* :-(\n";
-	}
+	cellsAsVertices.push_back(v);
+}
+
+void CellsToVerticesAdapter::clear() {
+	cellsAsVertices.clear();
 }
 
 } /* namespace topologicalSort */

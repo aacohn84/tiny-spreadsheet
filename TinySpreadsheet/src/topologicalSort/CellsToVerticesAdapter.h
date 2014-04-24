@@ -19,7 +19,7 @@ namespace topologicalSort {
 
 class CellsToVerticesAdapter: public Vertices {
 private:
-	std::vector<CellToVertexAdapter*> cellsAsVertices;
+	std::vector<Vertex*> cellsAsVertices;
 
 public:
 	CellsToVerticesAdapter(std::vector<core::Cell*> *cells, core::DAG *graph);
@@ -28,6 +28,7 @@ public:
 	std::vector<Vertex*>::iterator begin();
 	std::vector<Vertex*>::iterator end();
 	void add(Vertex* v);
+	void clear();
 };
 
 } /* namespace topologicalSort */

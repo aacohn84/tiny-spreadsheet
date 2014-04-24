@@ -11,6 +11,7 @@
 #include "CellsToVerticesAdapter.h"
 #include "DAG.h"
 #include "Vertices.h"
+#include "TopSorter.h"
 #include "../core/DAG.h"
 
 namespace topologicalSort {
@@ -18,13 +19,14 @@ namespace topologicalSort {
 class TopSortableDAG: public topologicalSort::DAG, public core::DAG {
 private:
 	CellsToVerticesAdapter *cellsAsVertices;
+	TopSorter *topSorter;
 
 public:
 	TopSortableDAG(core::DAG *graph);
 	~TopSortableDAG();
 
 	Vertices* getVertices();
-	Cell* getCells();
+	void sort();
 };
 
 } /* namespace topologicalSort */

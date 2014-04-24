@@ -48,9 +48,7 @@ int main() {
 
 	DAG theDag;
 	TopSortableDAG sortableDag(&theDag);
-	topologicalSort::DAG *dagPtr = &sortableDag;
-	TopSorter topSorter(dagPtr);
-	topSorter.sort();
+	sortableDag.sort();
 
 	return 0;
 }

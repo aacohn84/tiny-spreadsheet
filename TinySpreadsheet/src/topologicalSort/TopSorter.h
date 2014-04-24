@@ -25,7 +25,7 @@ public:
 	TopSorter(DAG *graph);
 	virtual ~TopSorter();
 
-	Vertices* sort();
+	void sort();
 };
 
 } /* namespace core */

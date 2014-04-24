@@ -11,7 +11,9 @@
 namespace topologicalSort {
 
 TopSortableDAG::TopSortableDAG(core::DAG *graph)
-	: core::DAG(*graph), cellsAsVertices(new CellsToVerticesAdapter(&cells, this))
+	: core::DAG(*graph),
+	  cellsAsVertices(new CellsToVerticesAdapter(&cells, this)),
+	  topSorter(new TopSorter(this))
 {
 }
 
@@ -24,9 +26,9 @@ Vertices* TopSortableDAG::getVertices() {
 	return (Vertices *) cellsAsVertices;
 }
 
-Cell* TopSortableDAG::getCells() {
-	cells.clear();
-	return nullptr;
+void TopSortableDAG::sort() {
+	topSorter->sort();
+	// replace graph's cells with sorted cells
 }
 
 } /* namespace topologicalSort */
