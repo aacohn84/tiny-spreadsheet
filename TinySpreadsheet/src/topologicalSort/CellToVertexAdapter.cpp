@@ -16,25 +16,34 @@ using std::vector;
 namespace topologicalSort {
 
 CellToVertexAdapter::CellToVertexAdapter(Cell *c, core::DAG *graph)
-	: graph(graph), underlyingCell(c), visited(false), inDegrees(0)
+	: graph(graph), underlyingCell(c), visited(false), inDegrees(0),
+	adjacentVertices(nullptr)
 {
 }
 
 CellToVertexAdapter::~CellToVertexAdapter() {
-	// TODO Auto-generated destructor stub
+	delete adjacentVertices;
 }
 
 Vertices* CellToVertexAdapter::getAdjacent() {
-	// collect references to the adjacent cells in a vector
-	vector<Cell*> *adjacentCells = new vector<Cell*>();
-	for (string dependency : underlyingCell->dependencies) {
-		adjacentCells->push_back(graph->getCell(dependency));
+	if (!adjacentVertices) {
+		// collect references to the adjacent cells in a vector
+		vector<Cell*> adjacentCells;
+		for (string dependencyName : underlyingCell->dependencies) {
+			Cell *dependencyCell = graph->getCell(dependencyName);
+			if (dependencyCell) {
+				adjacentCells.push_back(dependencyCell);
+			}
+		}
+
+		// convert Cells to Vertices
+		adjacentVertices = new CellsToVerticesAdapter(adjacentCells, graph);
 	}
-
-	// convert Cells to Vertices
-	Vertices *adjacentVertices = new CellsToVerticesAdapter(adjacentCells, graph);
-
 	return adjacentVertices;
+}
+
+Cell* CellToVertexAdapter::getUnderlyingCell() {
+	return underlyingCell;
 }
 
 int CellToVertexAdapter::getInDegrees() {

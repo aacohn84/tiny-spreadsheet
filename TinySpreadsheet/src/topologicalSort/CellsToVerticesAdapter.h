@@ -22,7 +22,7 @@ private:
 	std::vector<Vertex*> cellsAsVertices;
 
 public:
-	CellsToVerticesAdapter(std::vector<core::Cell*> *cells, core::DAG *graph);
+	CellsToVerticesAdapter(std::vector<core::Cell*> &cells, core::DAG *graph);
 	virtual ~CellsToVerticesAdapter();
 
 	std::vector<Vertex*>::iterator begin();

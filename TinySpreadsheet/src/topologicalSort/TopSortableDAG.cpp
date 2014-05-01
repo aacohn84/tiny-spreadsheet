@@ -5,6 +5,8 @@
  *      Author: Aaron Cohn
  */
 
+#include <vector>
+
 #include "TopSortableDAG.h"
 #include "CellsToVerticesAdapter.h"
 #include "CellToVertexAdapter.h"
@@ -13,17 +15,18 @@ namespace topologicalSort {
 
 using std::string;
 using std::map;
+using std::vector;
 using core::Cell;
 
 TopSortableDAG::TopSortableDAG(core::DAG *graph)
 	: core::DAG(*graph)
 {
-	cells.clear();
 	map<string, Cell*> *dagMap = graph->getMap();
+	vector<Cell*> newCells;
 	for (auto cellsEntry : *dagMap) {
-		cells.push_back(cellsEntry.second);
+		newCells.push_back(cellsEntry.second);
 	}
-	cellsAsVertices = new CellsToVerticesAdapter(&cells, this);
+	cellsAsVertices = new CellsToVerticesAdapter(newCells, this);
 }
 
 TopSortableDAG::~TopSortableDAG() {
@@ -42,15 +45,12 @@ void TopSortableDAG::sort() {
 	topSorter.sort(cellsAsVertices);
 
 	// dump the old list of cells
-	for (Cell *c : this->cells) {
-		delete c;
-	}
 	cells.clear();
 
 	// replace with the new list
 	for (Vertex *v : *cellsAsVertices) {
 		CellToVertexAdapter *cellAsVertex = dynamic_cast<CellToVertexAdapter*>(v);
-		this->cells.push_back((Cell*) cellAsVertex);
+		this->cells.push_back(cellAsVertex->getUnderlyingCell());
 	}
 }
 

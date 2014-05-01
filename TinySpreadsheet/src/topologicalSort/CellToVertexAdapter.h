@@ -11,6 +11,7 @@
 #include <memory>
 
 #include "Vertex.h"
+#include "Vertices.h"
 #include "../core/Cell.h"
 #include "../core/DAG.h"
 
@@ -24,11 +25,14 @@ private:
 	Cell *underlyingCell;
 	bool visited;
 	int inDegrees;
+	Vertices *adjacentVertices;
+
 public:
 	CellToVertexAdapter(Cell *c, core::DAG *graph);
 	virtual ~CellToVertexAdapter();
 
 	Vertices* getAdjacent();
+	Cell* getUnderlyingCell();
 	int getInDegrees();
 	void addInDegree();
 	bool isVisited();

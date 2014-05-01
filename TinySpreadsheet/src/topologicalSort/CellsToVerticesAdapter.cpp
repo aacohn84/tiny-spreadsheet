@@ -13,16 +13,18 @@ namespace topologicalSort {
 using std::vector;
 using core::Cell;
 
-CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> *cells, core::DAG *graph) {
+CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> &cells, core::DAG *graph) {
 	// convert each Cell* to Vertex* and store in vector
-	for (Cell *cell : *cells) {
+	for (Cell *cell : cells) {
 		Vertex *vertexPtr = new CellToVertexAdapter(cell, graph);
 		add(vertexPtr);
 	}
 }
 
 CellsToVerticesAdapter::~CellsToVerticesAdapter() {
-	// May need to deallocate vertices here
+	for (Vertex *v : cellsAsVertices) {
+		delete v;
+	}
 }
 
 vector<Vertex*>::iterator CellsToVerticesAdapter::begin()
