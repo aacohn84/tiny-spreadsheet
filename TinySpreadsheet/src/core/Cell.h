@@ -26,6 +26,7 @@ public:
 	bool hasNumValue;
 	bool hasError;
 	string rawInput;
+	string errorMessage;
 	double numValue;
 	vector<string> *dependencies;
 };

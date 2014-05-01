@@ -29,7 +29,8 @@ int main() {
 	 * main() cannot be defined in a namespace. It has to live in global scope.
 	 */
 
-	Evaluator myEvaluator;
+	DAG theDag;
+	Evaluator* myEvaluator = new Evaluator(&theDag);
 	Cell* a1 = new Cell("A1", "=B3 + 2");
 	Cell* b3 = new Cell("B3", "5");
 	Cell* c2 = new Cell("C2", "I love cats");
@@ -38,22 +39,23 @@ int main() {
 	//myEvaluator.evaluate(c2);
 
 
-	myEvaluator.evaluate(a1);
-	myEvaluator.evaluate(b3);
-	myEvaluator.evaluate(c2);
-	myEvaluator.evaluate(d1);
-	myEvaluator.evalAllCells();
-	myEvaluator.printAllCells();
+	myEvaluator->evaluate(a1);
+	myEvaluator->evaluate(b3);
+	myEvaluator->evaluate(c2);
+	myEvaluator->evaluate(d1);
+	myEvaluator->evalAllCells();
+	myEvaluator->printAllCells();
 	cout << "done";
 
-	DAG theDag;
+	//DAG theDag;
 	theDag.updateCell(a1);
 	theDag.updateCell(b3);
 	theDag.updateCell(c2);
 	theDag.updateCell(d1);
 	TopSortableDAG sortableDag(&theDag);
 	sortableDag.sort();
-
+	myEvaluator->evalAllCells();
+	myEvaluator->printAllCells();
 	return 0;
 }
 

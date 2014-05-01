@@ -16,6 +16,7 @@ Cell::Cell(string _name, string _rawInput)
 	hasError = false;
 	displayValue = _rawInput;
 	dependencies = new vector<string>();
+	errorMessage = "No Errors";
 }
 
 Cell::~Cell()
