@@ -11,9 +11,9 @@ namespace core {
 DAG::DAG() {}
 
 DAG::~DAG(){
-	for (auto i: dag){
-		delete i.second;
-	}
+	//for (auto i: dag){
+		//delete i.second;
+	//}
 }
 
 void DAG::updateCell(Cell* input) {

@@ -48,12 +48,12 @@ int main() {
 	cout << "done";
 
 	//DAG theDag;
-	theDag.updateCell(a1);
+	/*theDag.updateCell(a1);
 	theDag.updateCell(b3);
 	theDag.updateCell(c2);
-	theDag.updateCell(d1);
-	TopSortableDAG sortableDag(&theDag);
-	sortableDag.sort();
+	theDag.updateCell(d1);*/
+	//TopSortableDAG sortableDag(&theDag);
+	//sortableDag.sort();
 	myEvaluator->evalAllCells();
 	myEvaluator->printAllCells();
 	return 0;

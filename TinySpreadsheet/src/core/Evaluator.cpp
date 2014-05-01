@@ -11,10 +11,14 @@
 #include <sstream>
 #include <regex>
 
+#include "../topologicalSort/TopSorter.h"
+#include "../topologicalSort/TopSortableDAG.h"
+
 namespace core{
 
 	using namespace std;
-
+	using topologicalSort::TopSortableDAG;
+	using topologicalSort::TopSorter;
 
 	Evaluator::Evaluator(DAG* aDag)
 	{
@@ -86,6 +90,8 @@ namespace core{
 			}
 		}
 		myDAG->updateCell(currentCell);
+		TopSortableDAG sortableDag(myDAG);
+		sortableDag.sort();
 		return currentCell;
 	}
 

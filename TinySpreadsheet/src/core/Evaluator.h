@@ -19,16 +19,6 @@ namespace core{
 	using namespace std;
 
 
-	/*
-	class DAG
-	{
-	public:
-	DAG();
-	~DAG();
-	vector<Cell*>* allCells;
-	Cell* getCell(string cellName);
-	void updateCell(Cell* newCell);
-	};*/
 
 	class Evaluator
 	{
