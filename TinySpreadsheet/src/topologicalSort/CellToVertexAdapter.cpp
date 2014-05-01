@@ -27,7 +27,7 @@ CellToVertexAdapter::~CellToVertexAdapter() {
 Vertices* CellToVertexAdapter::getAdjacent() {
 	// collect references to the adjacent cells in a vector
 	vector<Cell*> *adjacentCells = new vector<Cell*>();
-	for (string dependency : *(underlyingCell->dependencies)) {
+	for (string dependency : underlyingCell->dependencies) {
 		adjacentCells->push_back(graph->getCell(dependency));
 	}
 

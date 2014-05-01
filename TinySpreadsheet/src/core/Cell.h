@@ -20,7 +20,6 @@ class Cell
 {
 public:
 	Cell(string _name, string _rawInput);
-	~Cell();
 	string displayValue;
 	string name;
 	bool hasNumValue;
@@ -28,7 +27,7 @@ public:
 	string rawInput;
 	string errorMessage;
 	double numValue;
-	vector<string> *dependencies;
+	vector<string> dependencies;
 };
 
 } /* namespace core */

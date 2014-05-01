@@ -7,6 +7,7 @@
 #include "Cell.h"
 
 namespace core {
+
 Cell::Cell(string _name, string _rawInput)
 {
 	name = _name;
@@ -15,13 +16,7 @@ Cell::Cell(string _name, string _rawInput)
 	hasNumValue = false;
 	hasError = false;
 	displayValue = _rawInput;
-	dependencies = new vector<string>();
 	errorMessage = "No Errors";
-}
-
-Cell::~Cell()
-{
-	delete dependencies;
 }
 
 }

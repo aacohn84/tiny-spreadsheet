@@ -42,10 +42,10 @@ namespace core{
 		{
 			temp = myCells->at(i);
 			cout << "Cell " << temp->name << endl;
-			cout << "Has " << temp->dependencies->size() << " dependencies:";
-			for (unsigned j = 0; j < temp->dependencies->size(); j++)
+			cout << "Has " << temp->dependencies.size() << " dependencies:";
+			for (unsigned j = 0; j < temp->dependencies.size(); j++)
 			{
-				cout << " " << temp->dependencies->at(j);
+				cout << " " << temp->dependencies.at(j);
 			}
 			cout << "\nRaw Input: " << temp->rawInput << endl;
 			cout << "Display Value: " << temp->displayValue << endl;
@@ -64,8 +64,7 @@ namespace core{
 		currentCell->hasNumValue = false;
 		currentCell->displayValue = currentCell->rawInput;
 		currentCell->errorMessage = "No errors.";
-		currentCell->dependencies->clear();
-
+		currentCell->dependencies.clear();
 
 		if (currentCell->rawInput.length())
 		{
@@ -166,16 +165,16 @@ namespace core{
 						else
 						{
 							bool alreadyThere = false;
-							for (unsigned i = 0; i < currentCell->dependencies->size(); i++)
+							for (unsigned i = 0; i < currentCell->dependencies.size(); i++)
 							{
-								if (currentCell->dependencies->at(i) == buffer)
+								if (currentCell->dependencies.at(i) == buffer)
 								{
 									alreadyThere = true;
 									break;
 								}
 							}
 							if (!alreadyThere)
-								currentCell->dependencies->push_back(buffer);
+								currentCell->dependencies.push_back(buffer);
 						}
 					}
 					Cell* aCell = myDAG->getCell(buffer);
