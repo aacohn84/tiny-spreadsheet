@@ -3,10 +3,10 @@ TinySpreadsheet/Debug/*
 .project
 TinySpreadsheet/.settings/*
 TinySpreadsheet/.gitignore
-TinySpreadsheet.sln
-TinySpreadsheet.v12.suo
+*.sln
+*.suo
 Debug/*
-TinySpreadsheet.opensdf
-TinySpreadsheet.sdf
-TinySpreadsheet/TinySpreadsheet.vcxproj
-TinySpreadsheet/TinySpreadsheet.vcxproj.filters
+*.opensdf
+*.sdf
+*.vcxproj
+*.vcxproj.filters
