@@ -17,6 +17,7 @@ class Vertices;
 class Vertex {
 public:
 	virtual ~Vertex() {}
+	virtual void addAdjacent(Vertex *adjacentVertex) = 0;
 	virtual Vertices* getAdjacent() = 0;
 	virtual int getInDegrees() = 0;
 	virtual void addInDegree() = 0;

@@ -58,4 +58,3 @@ int main() {
 	myEvaluator->printAllCells();
 	return 0;
 }
-
