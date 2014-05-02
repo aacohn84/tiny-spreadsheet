@@ -58,7 +58,7 @@ Vertices* TopSortableDAG::getVertices() {
 void TopSortableDAG::sort() {
 	// do the sorting
 	TopSorter topSorter;
-	topSorter.sort(&cellsAsVertices);
+	topSorter.sort(cellsAsVertices);
 
 	// dump the old list of cells
 	vector<Cell*> *cells = underlyingDag->getCells();

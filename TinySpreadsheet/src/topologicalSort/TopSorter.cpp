@@ -12,33 +12,26 @@ namespace topologicalSort {
 
 using namespace std;
 
-void TopSorter::sortByInDegrees(Vertices *v)
+void TopSorter::sort(Vertices &vertices)
 {
-	// is this necessary?
-}
-
-void TopSorter::sort(Vertices *vertices)
-{
-	sortByInDegrees(vertices);
-
 	stack<Vertex *> s;
 
 	// Mark all vertices unvisited
-	for (Vertex *v : *vertices) {
+	for (Vertex *v : vertices) {
 		v->setVisited(false);
 	}
 
 	// sort into stack
-	for (Vertex *v : *vertices) {
+	for (Vertex *v : vertices) {
 		if (!v->isVisited()) {
 			recursiveTopSort(v, s);
 		}
 	}
 
 	// re-order the original list
-	vertices->clear();
+	vertices.clear();
 	while (!s.empty()) {
-		vertices->add(s.top());
+		vertices.add(s.top());
 		s.pop();
 	}
 }

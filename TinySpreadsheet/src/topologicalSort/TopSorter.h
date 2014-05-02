@@ -17,10 +17,9 @@ namespace topologicalSort {
 class TopSorter {
 private:
 	void recursiveTopSort(Vertex *v, std::stack<Vertex *> &s);
-	void sortByInDegrees(Vertices *v);
 
 public:
-	void sort(Vertices *vertices);
+	void sort(Vertices &vertices);
 };
 
 } /* namespace core */
