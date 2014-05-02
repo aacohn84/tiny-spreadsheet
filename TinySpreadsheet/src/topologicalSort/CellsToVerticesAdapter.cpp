@@ -6,6 +6,8 @@
  */
 
 #include "CellsToVerticesAdapter.h"
+
+#include "TopSortableDAG.h"
 #include "CellToVertexAdapter.h"
 
 namespace topologicalSort {
@@ -13,18 +15,8 @@ namespace topologicalSort {
 using std::vector;
 using core::Cell;
 
-CellsToVerticesAdapter::CellsToVerticesAdapter(vector<Cell*> &cells, core::DAG *graph) {
-	// convert each Cell* to Vertex* and store in vector
-	for (Cell *cell : cells) {
-		Vertex *vertexPtr = new CellToVertexAdapter(cell, graph);
-		add(vertexPtr);
-	}
-}
-
-CellsToVerticesAdapter::~CellsToVerticesAdapter() {
-	for (Vertex *v : cellsAsVertices) {
-		delete v;
-	}
+CellsToVerticesAdapter::CellsToVerticesAdapter() {
+	// cellsAsVertices is an initially empty list
 }
 
 vector<Vertex*>::iterator CellsToVerticesAdapter::begin()

@@ -4,10 +4,10 @@
  *  Created on: Apr 10, 2014
  *      Author: Aaron Cohn
  */
+#include "TopSortableDAG.h"
 
 #include <vector>
 
-#include "TopSortableDAG.h"
 #include "CellsToVerticesAdapter.h"
 #include "CellToVertexAdapter.h"
 
@@ -19,38 +19,55 @@ using std::vector;
 using core::Cell;
 
 TopSortableDAG::TopSortableDAG(core::DAG *graph)
-	: core::DAG(*graph)
-{
+	: underlyingDag(graph) {
+
+	// map the cells to vertices
 	map<string, Cell*> *dagMap = graph->getMap();
-	vector<Cell*> newCells;
 	for (auto cellsEntry : *dagMap) {
-		newCells.push_back(cellsEntry.second);
+		Cell *cell = cellsEntry.second;
+		Vertex *vertex = new CellToVertexAdapter(cell);
+		vertexTable.emplace(cell, vertex);
+		cellsAsVertices.add(vertex);
 	}
-	cellsAsVertices = new CellsToVerticesAdapter(newCells, this);
+	
+	// link each vertex to its adjacent vertices
+	for (auto cellsEntry : *dagMap) {
+		Cell *cell = cellsEntry.second;
+		Vertex *vertex = vertexTable.at(cell);
+		for (string dependentName : cell->dependencies) {
+			Cell *dependentCell = graph->getCell(dependentName);
+			if (dependentCell != nullptr) {
+				Vertex *adjacentVertex = vertexTable.at(dependentCell);
+				vertex->addAdjacent(adjacentVertex);
+			}
+		}
+	}
 }
 
 TopSortableDAG::~TopSortableDAG() {
-	/* Intentionally empty -- the core::DAG owns the "dag" and "cells" objects,
-	 * so we won't deallocate them here */
-	delete cellsAsVertices;
+	for (auto vertexEntry : vertexTable) {
+		delete vertexEntry.second;
+	}
+	vertexTable.clear();
 }
 
 Vertices* TopSortableDAG::getVertices() {
-	return (Vertices *) cellsAsVertices;
+	return (Vertices *) &cellsAsVertices;
 }
 
 void TopSortableDAG::sort() {
 	// do the sorting
 	TopSorter topSorter;
-	topSorter.sort(cellsAsVertices);
+	topSorter.sort(&cellsAsVertices);
 
 	// dump the old list of cells
-	cells.clear();
+	vector<Cell*> *cells = underlyingDag->getCells();
+	cells->clear();
 
 	// replace with the new list
-	for (Vertex *v : *cellsAsVertices) {
+	for (Vertex *v : cellsAsVertices) {
 		CellToVertexAdapter *cellAsVertex = dynamic_cast<CellToVertexAdapter*>(v);
-		this->cells.push_back(cellAsVertex->getUnderlyingCell());
+		cells->push_back(cellAsVertex->getUnderlyingCell());
 	}
 }
 

@@ -4,10 +4,9 @@
  *  Created on: Feb 20, 2014
  *      Author: Aaron Cohn
  */
-#include <stack>
-#include <algorithm>
-
 #include "TopSorter.h"
+
+#include <stack>
 
 namespace topologicalSort {
 

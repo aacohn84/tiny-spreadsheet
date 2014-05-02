@@ -8,6 +8,8 @@
 #ifndef TOPSORTABLEDAG_H_
 #define TOPSORTABLEDAG_H_
 
+#include <map>
+
 #include "CellsToVerticesAdapter.h"
 #include "DAG.h"
 #include "Vertices.h"
@@ -16,9 +18,11 @@
 
 namespace topologicalSort {
 
-class TopSortableDAG: public topologicalSort::DAG, public core::DAG {
+class TopSortableDAG: public topologicalSort::DAG {
 private:
-	CellsToVerticesAdapter *cellsAsVertices;
+	core::DAG *underlyingDag;
+	CellsToVerticesAdapter cellsAsVertices;
+	std::map<Cell*, Vertex*> vertexTable;
 
 public:
 	TopSortableDAG(core::DAG *graph);

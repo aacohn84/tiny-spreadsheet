@@ -13,7 +13,6 @@
 #include "Vertices.h"
 #include "CellToVertexAdapter.h"
 #include "../core/Cell.h"
-#include "../core/DAG.h"
 
 namespace topologicalSort {
 
@@ -22,8 +21,7 @@ private:
 	std::vector<Vertex*> cellsAsVertices;
 
 public:
-	CellsToVerticesAdapter(std::vector<core::Cell*> &cells, core::DAG *graph);
-	virtual ~CellsToVerticesAdapter();
+	CellsToVerticesAdapter();
 
 	std::vector<Vertex*>::iterator begin();
 	std::vector<Vertex*>::iterator end();

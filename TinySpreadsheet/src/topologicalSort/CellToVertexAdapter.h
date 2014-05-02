@@ -8,12 +8,9 @@
 #ifndef VERTEXADAPTER_H_
 #define VERTEXADAPTER_H_
 
-#include <memory>
-
 #include "Vertex.h"
 #include "Vertices.h"
 #include "../core/Cell.h"
-#include "../core/DAG.h"
 
 namespace topologicalSort {
 
@@ -21,16 +18,16 @@ using core::Cell;
 
 class CellToVertexAdapter: public Vertex {
 private:
-	core::DAG *graph;
 	Cell *underlyingCell;
 	bool visited;
 	int inDegrees;
 	Vertices *adjacentVertices;
 
 public:
-	CellToVertexAdapter(Cell *c, core::DAG *graph);
+	CellToVertexAdapter(Cell *c);
 	virtual ~CellToVertexAdapter();
 
+	void addAdjacent(Vertex *adjacentVertex);
 	Vertices* getAdjacent();
 	Cell* getUnderlyingCell();
 	int getInDegrees();

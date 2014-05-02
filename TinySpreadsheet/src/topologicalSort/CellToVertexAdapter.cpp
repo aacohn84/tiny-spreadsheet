@@ -6,18 +6,20 @@
  */
 
 #include "CellToVertexAdapter.h"
-#include "CellsToVerticesAdapter.h"
+
 #include <string>
 #include <vector>
+
+#include "CellsToVerticesAdapter.h"
 
 using std::string;
 using std::vector;
 
 namespace topologicalSort {
 
-CellToVertexAdapter::CellToVertexAdapter(Cell *c, core::DAG *graph)
-	: graph(graph), underlyingCell(c), visited(false), inDegrees(0),
-	adjacentVertices(nullptr)
+CellToVertexAdapter::CellToVertexAdapter(Cell *c)
+	: underlyingCell(c), visited(false), inDegrees(0),
+	adjacentVertices(new CellsToVerticesAdapter)
 {
 }
 
@@ -25,20 +27,11 @@ CellToVertexAdapter::~CellToVertexAdapter() {
 	delete adjacentVertices;
 }
 
-Vertices* CellToVertexAdapter::getAdjacent() {
-	if (!adjacentVertices) {
-		// collect references to the adjacent cells in a vector
-		vector<Cell*> adjacentCells;
-		for (string dependencyName : underlyingCell->dependencies) {
-			Cell *dependencyCell = graph->getCell(dependencyName);
-			if (dependencyCell) {
-				adjacentCells.push_back(dependencyCell);
-			}
-		}
+void CellToVertexAdapter::addAdjacent(Vertex *adjacentVertex) {
+	adjacentVertices->add(adjacentVertex);
+}
 
-		// convert Cells to Vertices
-		adjacentVertices = new CellsToVerticesAdapter(adjacentCells, graph);
-	}
+Vertices* CellToVertexAdapter::getAdjacent() {
 	return adjacentVertices;
 }
 
