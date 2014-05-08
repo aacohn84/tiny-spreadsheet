@@ -461,6 +461,10 @@ namespace core{
 					if (!currentCell->hasError)
 					{
 						currentCell->hasNumValue = true;
+						if (int(currentCell->numValue) == currentCell->numValue)
+							currentCell->displayValue = to_string(int(currentCell->numValue));
+						else
+							currentCell->displayValue = to_string(currentCell->numValue);
 					}
 				}
 			}

@@ -8,7 +8,7 @@
 #ifndef TOPSORTER_H_
 #define TOPSORTER_H_
 
-#include <stack>
+#include <deque>
 
 #include "DAG.h"
 
@@ -16,7 +16,7 @@ namespace topologicalSort {
 
 class TopSorter {
 private:
-	void recursiveTopSort(Vertex *v, std::stack<Vertex *> &s);
+	void recursiveTopSort(Vertex *v, std::deque<Vertex *> &s);
 
 public:
 	void sort(Vertices &vertices);

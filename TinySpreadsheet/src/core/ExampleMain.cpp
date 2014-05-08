@@ -32,7 +32,7 @@ int main() {
 	DAG theDag;
 	Evaluator* myEvaluator = new Evaluator(&theDag);
 	Cell* a1 = new Cell("A1", "=B3 + 2");
-	Cell* b3 = new Cell("B3", "5");
+	Cell* b3 = new Cell("B3", "= 2 + 3");
 	Cell* c2 = new Cell("C2", "I love cats");
 	Cell* d1 = new Cell("D1", "= C2");
 
@@ -40,10 +40,14 @@ int main() {
 
 
 	myEvaluator->evaluate(a1);
+	myEvaluator->evalAllCells();
 	myEvaluator->evaluate(b3);
-	myEvaluator->evaluate(c2);
+	myEvaluator->evalAllCells();
 	myEvaluator->evaluate(d1);
 	myEvaluator->evalAllCells();
+	myEvaluator->evaluate(c2);
+	myEvaluator->evalAllCells();
+	//myEvaluator->evalAllCells();
 	myEvaluator->printAllCells();
 	cout << "done";
 
@@ -54,7 +58,7 @@ int main() {
 	theDag.updateCell(d1);*/
 	//TopSortableDAG sortableDag(&theDag);
 	//sortableDag.sort();
-	myEvaluator->evalAllCells();
-	myEvaluator->printAllCells();
+	//myEvaluator->evalAllCells();
+	//myEvaluator->printAllCells();
 	return 0;
 }

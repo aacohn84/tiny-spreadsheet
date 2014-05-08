@@ -52,7 +52,7 @@ TopSortableDAG::~TopSortableDAG() {
 }
 
 Vertices* TopSortableDAG::getVertices() {
-	return (Vertices *) &cellsAsVertices;
+	return (Vertices*) &cellsAsVertices;
 }
 
 void TopSortableDAG::sort() {

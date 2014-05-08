@@ -6,15 +6,13 @@
  */
 #include "TopSorter.h"
 
-#include <stack>
-
 namespace topologicalSort {
 
 using namespace std;
 
 void TopSorter::sort(Vertices &vertices)
 {
-	stack<Vertex *> s;
+	deque<Vertex *> s;
 
 	// Mark all vertices unvisited
 	for (Vertex *v : vertices) {
@@ -31,12 +29,12 @@ void TopSorter::sort(Vertices &vertices)
 	// re-order the original list
 	vertices.clear();
 	while (!s.empty()) {
-		vertices.add(s.top());
-		s.pop();
+		vertices.add(s.back());
+		s.pop_back();
 	}
 }
 
-void TopSorter::recursiveTopSort(Vertex *v, stack<Vertex *> &s)
+void TopSorter::recursiveTopSort(Vertex *v, deque<Vertex *> &s)
 {
 	v->setVisited(true);
 	Vertices *adjacent = v->getAdjacent();
@@ -45,7 +43,7 @@ void TopSorter::recursiveTopSort(Vertex *v, stack<Vertex *> &s)
 			recursiveTopSort(a, s);
 		}
 	}
-	s.push(v);
+	s.push_front(v);
 }
 
 } /* namespace core */
