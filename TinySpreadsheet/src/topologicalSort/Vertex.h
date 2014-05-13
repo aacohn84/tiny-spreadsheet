@@ -8,8 +8,6 @@
 #ifndef VERTEX_H_
 #define VERTEX_H_
 
-#include <memory>
-
 namespace topologicalSort {
 
 class Vertices;
@@ -19,13 +17,9 @@ public:
 	virtual ~Vertex() {}
 	virtual void addAdjacent(Vertex *adjacentVertex) = 0;
 	virtual Vertices* getAdjacent() = 0;
-	virtual int getInDegrees() = 0;
-	virtual void addInDegree() = 0;
 	virtual bool isVisited() = 0;
 	virtual void setVisited(bool visited) = 0;
 };
-
-typedef std::shared_ptr<Vertex> VertexPtr;
 
 } /* namespace topologicalSort */
 

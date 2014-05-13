@@ -8,7 +8,6 @@
 
 #include <vector>
 
-#include "CellsToVerticesAdapter.h"
 #include "CellToVertexAdapter.h"
 
 namespace topologicalSort {
@@ -49,10 +48,6 @@ TopSortableDAG::~TopSortableDAG() {
 		delete vertexEntry.second;
 	}
 	vertexTable.clear();
-}
-
-Vertices* TopSortableDAG::getVertices() {
-	return (Vertices*) &cellsAsVertices;
 }
 
 void TopSortableDAG::sort() {

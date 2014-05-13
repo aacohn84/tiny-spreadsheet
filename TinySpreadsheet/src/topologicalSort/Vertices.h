@@ -17,12 +17,16 @@
 namespace topologicalSort {
 
 class Vertices {
+private:
+	std::vector<Vertex*> vertices;
+
 public:
-	virtual ~Vertices() {}
-	virtual void clear() = 0;
-	virtual std::vector<Vertex*>::iterator begin() = 0;
-	virtual std::vector<Vertex*>::iterator end() = 0;
-	virtual void add(Vertex *v) = 0;
+	Vertices();
+	~Vertices() {}
+	void clear();
+	std::vector<Vertex*>::iterator begin();
+	std::vector<Vertex*>::iterator end();
+	void add(Vertex *v);
 };
 
 } /* namespace topologicalSort */

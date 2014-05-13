@@ -20,7 +20,6 @@ class CellToVertexAdapter: public Vertex {
 private:
 	Cell *underlyingCell;
 	bool visited;
-	int inDegrees;
 	Vertices *adjacentVertices;
 
 public:
@@ -30,8 +29,6 @@ public:
 	void addAdjacent(Vertex *adjacentVertex);
 	Vertices* getAdjacent();
 	Cell* getUnderlyingCell();
-	int getInDegrees();
-	void addInDegree();
 	bool isVisited();
 	void setVisited(bool visited);
 };

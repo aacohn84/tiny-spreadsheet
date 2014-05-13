@@ -10,16 +10,14 @@
 #include <string>
 #include <vector>
 
-#include "CellsToVerticesAdapter.h"
-
 using std::string;
 using std::vector;
 
 namespace topologicalSort {
 
 CellToVertexAdapter::CellToVertexAdapter(Cell *c)
-	: underlyingCell(c), visited(false), inDegrees(0),
-	adjacentVertices(new CellsToVerticesAdapter)
+	: underlyingCell(c), visited(false),
+	adjacentVertices(new Vertices)
 {
 }
 
@@ -37,14 +35,6 @@ Vertices* CellToVertexAdapter::getAdjacent() {
 
 Cell* CellToVertexAdapter::getUnderlyingCell() {
 	return underlyingCell;
-}
-
-int CellToVertexAdapter::getInDegrees() {
-	return inDegrees;
-}
-
-void CellToVertexAdapter::addInDegree() {
-	inDegrees++;
 }
 
 bool CellToVertexAdapter::isVisited() {

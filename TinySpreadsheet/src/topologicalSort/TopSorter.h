@@ -10,7 +10,7 @@
 
 #include <deque>
 
-#include "DAG.h"
+#include "Vertices.h"
 
 namespace topologicalSort {
 
